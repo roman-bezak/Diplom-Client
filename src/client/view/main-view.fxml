@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="792.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <top>
+      <VBox prefHeight="28.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+         <children>
+            <MenuBar prefHeight="25.0" prefWidth="484.0">
+              <menus>
+                <Menu mnemonicParsing="false" text="File">
+                  <items>
+                    <MenuItem mnemonicParsing="false" text="Close" />
+                  </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Edit">
+                  <items>
+                    <MenuItem mnemonicParsing="false" text="Delete" />
+                  </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Help">
+                  <items>
+                    <MenuItem mnemonicParsing="false" text="About" />
+                  </items>
+                </Menu>
+              </menus>
+            </MenuBar>
+            <ToolBar prefHeight="40.0" prefWidth="200.0">
+              <items>
+                <Button mnemonicParsing="false" text="Button" />
+              </items>
+            </ToolBar>
+         </children>
+      </VBox>
+   </top>
+   <left>
+      <TreeView prefHeight="498.0" prefWidth="222.0" BorderPane.alignment="CENTER">
+         <cursor>
+            <Cursor fx:constant="DEFAULT" />
+         </cursor>
+      </TreeView>
+   </left>
+   <cursor>
+      <Cursor fx:constant="DEFAULT" />
+   </cursor>
+   <center>
+      <TableView prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+        <columns>
+          <TableColumn prefWidth="111.0" text="C1" />
+        </columns>
+      </TableView>
+   </center>
+   <bottom>
+      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+         <children>
+            <ToolBar prefHeight="40.0" prefWidth="200.0" />
+            <TextArea fx:id="top" editable="false" prefHeight="200.0" prefWidth="200.0" text="fgdfgdfgdfgdfg&#10;df&#10;gdf&#10;g&#10;fd&#10;g&#10;df" />
+            <ToolBar prefHeight="40.0" prefWidth="200.0" />
+         </children>
+      </VBox>
+   </bottom>
+</BorderPane>
