@@ -29,5 +29,10 @@ public class MainController implements javafx.fxml.Initializable{
     }
 
 
+    public void p(){
+        System.out.println("<h1>This is my new Text</h1>");
+    }
+
+
 
 }

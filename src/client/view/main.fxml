@@ -44,13 +44,7 @@
       <Cursor fx:constant="DEFAULT" />
    </cursor>
    <center>
-      <TableView fx:id="table" BorderPane.alignment="CENTER">
-        <columns>
-          <TableColumn prefWidth="111.0" text="C1" />
-            <TableColumn prefWidth="111.0" text="C1" />
-            <TableColumn prefWidth="111.0" text="C1" />
-        </columns>
-      </TableView>
+      <TableView fx:id="table" BorderPane.alignment="CENTER" />
    </center>
    <left>
       <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" BorderPane.alignment="CENTER">
@@ -67,26 +61,9 @@
          <children>
             <TabPane prefHeight="245.0" prefWidth="821.0" tabClosingPolicy="UNAVAILABLE">
               <tabs>
-                <Tab text="Untitled Tab 1">
-                     <content>
-                        <TableView prefHeight="200.0" prefWidth="200.0">
-                          <columns>
-                            <TableColumn prefWidth="75.0" text="C1" />
-                            <TableColumn prefWidth="75.0" text="C2" />
-                          </columns>
-                        </TableView>
-                     </content>
-                  </Tab>
-                <Tab text="Untitled Tab 2">
-                     <content>
-                        <ListView prefHeight="200.0" prefWidth="200.0" />
-                     </content>
-                  </Tab>
-                  <Tab text="Untitled Tab 2">
-                     <content>
-                        <Label prefHeight="29.0" prefWidth="461.0" text="fdf hnsfh bsdkfy bdk fkjsdgf d" />
-                     </content>
-                  </Tab>
+                <Tab text="Files" />
+                <Tab text="Info" />
+                  <Tab onSelectionChanged="#p" text="Log" />
               </tabs>
             </TabPane>
          </children>
