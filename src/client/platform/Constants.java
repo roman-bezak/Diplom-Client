@@ -1,6 +1,6 @@
 package client.platform;
 
 
-public class ConstantManger {
+public class Constants {
     public static int VERSION = 1;
 }

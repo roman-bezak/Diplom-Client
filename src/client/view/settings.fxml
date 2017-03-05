@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+
+<Pane blendMode="DARKEN" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="381.0" prefWidth="339.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <TabPane prefHeight="330.0" prefWidth="331.0" tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+          <Tab text="Network">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="244.0" prefWidth="195.0">
+                     <children>
+                        <HBox layoutX="7.0" layoutY="14.0" prefHeight="25.0" prefWidth="325.0">
+                           <children>
+                              <Label prefHeight="25.0" prefWidth="89.0" text="Server ip:" />
+                              <TextField prefHeight="25.0" prefWidth="184.0" />
+                           </children>
+                        </HBox>
+                        <HBox layoutX="7.0" layoutY="49.0" prefHeight="25.0" prefWidth="325.0">
+                           <children>
+                              <Label prefHeight="25.0" prefWidth="89.0" text="Port:" />
+                              <TextField prefHeight="25.0" prefWidth="60.0" text="8080" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+          <Tab text="Untitled Tab 2">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+            </content>
+          </Tab>
+        </tabs>
+      </TabPane>
+      <Button layoutX="279.0" layoutY="348.0" mnemonicParsing="false" text="Cancel" />
+      <Button layoutX="241.0" layoutY="348.0" mnemonicParsing="false" text="Ok" />
+   </children>
+</Pane>
