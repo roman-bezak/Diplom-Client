@@ -30,12 +30,10 @@ public class SettingsController implements javafx.fxml.Initializable{
         settings_stage = new Stage();
         settings_stage.setScene(scene);
         settings_stage.setTitle("Settings");
-
         config = SettingsConfig.loadSettingsConfig();
 
         updateView();
 
-        this.showSettingsWindow();
 
     }
 
