@@ -54,7 +54,7 @@
               <tabs>
                 <Tab text="Files" />
                 <Tab text="Info" />
-                  <Tab onSelectionChanged="#p" text="Log">
+                  <Tab text="Log">
                      <content>
                         <TextArea prefHeight="200.0" prefWidth="200.0" />
                      </content>

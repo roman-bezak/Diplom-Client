@@ -9,8 +9,7 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-
-<Pane blendMode="DARKEN" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="381.0" prefWidth="339.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<Pane blendMode="DARKEN" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="381.0" prefWidth="339.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.controller.SettingsController">
    <children>
       <TabPane prefHeight="330.0" prefWidth="331.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
@@ -41,7 +40,7 @@
           </Tab>
         </tabs>
       </TabPane>
-      <Button layoutX="279.0" layoutY="348.0" mnemonicParsing="false" text="Cancel" />
+      <Button layoutX="279.0" layoutY="348.0" mnemonicParsing="false" onAction="#setOnClickSettingsCancelButton" text="Cancel" />
       <Button layoutX="241.0" layoutY="348.0" mnemonicParsing="false" text="Ok" />
    </children>
 </Pane>
