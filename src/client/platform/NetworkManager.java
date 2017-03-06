@@ -1,7 +1,8 @@
 package client.platform;
 
-/**
- * Created by admin on 06.03.2017.
- */
+
+import com.sun.deploy.net.HttpResponse;
+
 public class NetworkManager {
+
 }
