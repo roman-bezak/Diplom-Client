@@ -36,7 +36,8 @@ public class MainController implements javafx.fxml.Initializable{
         System.out.println("MC inithialize end.");
     }
 
-
-
+    public void showSettingsWindow(){
+        settingsController.showSettingsWindow();
+    }
 
 }

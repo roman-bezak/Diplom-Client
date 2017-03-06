@@ -20,13 +20,13 @@
                         <HBox layoutX="7.0" layoutY="14.0" prefHeight="25.0" prefWidth="325.0">
                            <children>
                               <Label prefHeight="25.0" prefWidth="89.0" text="Server ip:" />
-                              <TextField prefHeight="25.0" prefWidth="184.0" />
+                              <TextField fx:id="s_address" onAction="#showSettingsWindow" prefHeight="25.0" prefWidth="184.0" />
                            </children>
                         </HBox>
                         <HBox layoutX="7.0" layoutY="49.0" prefHeight="25.0" prefWidth="325.0">
                            <children>
                               <Label prefHeight="25.0" prefWidth="89.0" text="Port:" />
-                              <TextField prefHeight="25.0" prefWidth="60.0" text="8080" />
+                              <TextField fx:id="p_port" prefHeight="25.0" prefWidth="60.0" />
                            </children>
                         </HBox>
                      </children>
@@ -41,6 +41,6 @@
         </tabs>
       </TabPane>
       <Button layoutX="279.0" layoutY="348.0" mnemonicParsing="false" onAction="#setOnClickSettingsCancelButton" text="Cancel" />
-      <Button layoutX="241.0" layoutY="348.0" mnemonicParsing="false" text="Ok" />
+      <Button layoutX="241.0" layoutY="348.0" mnemonicParsing="false" onAction="#setOnClickSettingsOkButton" text="Ok" />
    </children>
 </Pane>

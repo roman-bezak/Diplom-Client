@@ -40,4 +40,10 @@ public class SettingsConfig implements Serializable{
 
         return config;
     }
+
+    public void updateSettingsConfig(String _address_server, int _port){
+        server_address = _address_server;
+        port = _port;
+        this.saveSettingsConfig();
+    }
 }
