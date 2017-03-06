@@ -5,6 +5,7 @@ import client.platform.SettingsConfig;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 import java.net.URL;
@@ -30,6 +31,9 @@ public class SettingsController implements javafx.fxml.Initializable{
         settings_stage = new Stage();
         settings_stage.setScene(scene);
         settings_stage.setTitle("Settings");
+
+        settings_stage.getIcons().addAll(new Image(SettingsController.class.getResourceAsStream("../resources/add.png")));
+
         config = SettingsConfig.loadSettingsConfig();
 
         updateView();
