@@ -38,7 +38,7 @@
                   <Button layoutX="164.0" layoutY="10.0" mnemonicParsing="false" text="Button" />
                   <Button layoutX="220.0" layoutY="10.0" mnemonicParsing="false" text="Button" />
                   <Button layoutX="276.0" layoutY="10.0" mnemonicParsing="false" text="Button" />
-                  <ChoiceBox prefWidth="150.0" />
+                  <ChoiceBox fx:id="choice_box" onDragEntered="#choice_box_selected" prefWidth="150.0" />
               </items>
             </ToolBar>
          </children>

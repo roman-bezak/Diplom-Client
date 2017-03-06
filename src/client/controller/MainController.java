@@ -1,10 +1,15 @@
 package client.controller;
 
 import client.platform.SettingsConfig;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TableView;
 
 import java.io.IOException;
@@ -16,12 +21,29 @@ public class MainController implements javafx.fxml.Initializable{
 
 
     @FXML
-    private TableView table;
+    public TableView table;
+    @FXML
+    public ChoiceBox choice_box;
+
 
     public SettingsController settingsController;
 
 
+
+    ObservableList<String> choice_box_options;
+
     public void initialize(URL url, ResourceBundle rb) {
+
+        choice_box_options = FXCollections.observableArrayList("valuename1", "valuename2");
+        choice_box.setItems(choice_box_options);
+        choice_box.setValue(choice_box_options.get(0));
+
+
+        choice_box.getSelectionModel().selectedIndexProperty().addListener((ov, value, new_value) -> {
+            System.out.println(ov);
+        });
+
+
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/settings.fxml"));
         Parent root = null;
@@ -38,6 +60,10 @@ public class MainController implements javafx.fxml.Initializable{
 
     public void showSettingsWindow(){
         settingsController.showSettingsWindow();
+    }
+
+    public void choice_box_selected(){
+        System.out.println("MC inithialize end.");
     }
 
 }
