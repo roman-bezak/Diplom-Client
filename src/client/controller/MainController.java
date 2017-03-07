@@ -1,14 +1,11 @@
 package client.controller;
 
-import client.platform.SettingsConfig;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
+import client.platform.HttpRequester;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TableView;
 
@@ -40,7 +37,11 @@ public class MainController implements javafx.fxml.Initializable{
 
 
         choice_box.getSelectionModel().selectedIndexProperty().addListener((ov, value, new_value) -> {
-            System.out.println(ov);
+            try {
+                System.out.println(HttpRequester.sendGet("https://www.onliner.by"));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         });
 
 
