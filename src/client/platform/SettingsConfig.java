@@ -10,6 +10,7 @@ public class SettingsConfig implements Serializable{
     public void saveSettingsConfig(){
 
         try {
+
             FileOutputStream fileOut =
                     new FileOutputStream(Constants.SETTINGS_CONFIG_PATH);
             ObjectOutputStream out = new ObjectOutputStream(fileOut);
