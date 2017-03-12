@@ -1,6 +1,6 @@
 package client.controller;
 
-import client.platform.HttpRequester;
+import client.platform.NetworkManager;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -8,6 +8,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TableView;
+
 
 import java.io.IOException;
 import java.net.URL;
@@ -24,12 +25,14 @@ public class MainController implements javafx.fxml.Initializable{
 
 
     public SettingsController settingsController;
-
+    public NetworkManager man;
 
 
     ObservableList<String> choice_box_options;
 
     public void initialize(URL url, ResourceBundle rb) {
+
+        man = new NetworkManager();
 
         choice_box_options = FXCollections.observableArrayList("valuename1", "valuename2");
         choice_box.setItems(choice_box_options);
@@ -37,13 +40,9 @@ public class MainController implements javafx.fxml.Initializable{
 
 
         choice_box.getSelectionModel().selectedIndexProperty().addListener((ov, value, new_value) -> {
-            try {
-                System.out.println(HttpRequester.sendGet("https://www.onliner.by"));
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        });
 
+
+        });
 
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/settings.fxml"));

@@ -68,7 +68,8 @@ public class SettingsController implements javafx.fxml.Initializable{
         this.updateSettingsConfig();
         this.hideSettingWindow();
     }
-    public void setOnClickSettingsCancelButton(){
+    public void setOnClickSettingsCancelButton() throws InterruptedException {
+
         this.hideSettingWindow();
     }
 
