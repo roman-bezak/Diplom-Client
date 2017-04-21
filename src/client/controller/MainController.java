@@ -25,14 +25,12 @@ public class MainController implements javafx.fxml.Initializable{
 
 
     public SettingsController settingsController;
-    public NetworkManager man;
 
 
     ObservableList<String> choice_box_options;
 
     public void initialize(URL url, ResourceBundle rb) {
 
-        man = new NetworkManager();
 
         choice_box_options = FXCollections.observableArrayList("valuename1", "valuename2");
         choice_box.setItems(choice_box_options);
@@ -47,6 +45,7 @@ public class MainController implements javafx.fxml.Initializable{
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/settings.fxml"));
         Parent root = null;
+
         try {
             root = loader.load();
         } catch (IOException e) {
@@ -54,6 +53,14 @@ public class MainController implements javafx.fxml.Initializable{
         }
         settingsController = (SettingsController)loader.getController();
         settingsController.setUpSettingWindow(root);
+
+
+
+
+
+
+
+
 
         System.out.println("MC inithialize end.");
     }
