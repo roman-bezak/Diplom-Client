@@ -1,6 +1,5 @@
 package client.controller;
 
-import client.platform.NetworkManager;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -55,19 +54,13 @@ public class MainController implements javafx.fxml.Initializable{
         settingsController.setUpSettingWindow(root);
 
 
-
-
-
-
-
-
-
         System.out.println("MC inithialize end.");
     }
 
     public void showSettingsWindow(){
         settingsController.showSettingsWindow();
     }
+    public void showAddProjectWindow(){  System.out.println("Clack"); }
 
     public void choice_box_selected(){
         System.out.println("MC inithialize end.");
