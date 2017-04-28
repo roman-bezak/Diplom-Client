@@ -18,8 +18,13 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.UUID;
 
 
 public class AddProjectController implements javafx.fxml.Initializable{
@@ -104,13 +109,6 @@ public class AddProjectController implements javafx.fxml.Initializable{
     public void showWindow(){
 
 
-        JSONObject resultJson = new JSONObject();
-
-        resultJson.put("name","GFSUUDFOGYHDS GH");
-        resultJson.put("num",new Integer(100));
-
-        task_manager.addTask(resultJson);
-
         config = SettingsConfig.loadSettingsConfig();
         addProject_stage.show();
 
@@ -144,17 +142,50 @@ public class AddProjectController implements javafx.fxml.Initializable{
 
         try {
 
-            int task_random_id = ra
-            HttpRequester.downloadFile(temp_obj.get("url_api").toString(), Constants.TASKS_FOLDER_PATH + "/" + "downloadFILE.rar");
-            UnZip.unzip(Constants.TASKS_FOLDER_PATH + "/Downloads.zip", Constants.TASKS_FOLDER_PATH + "/folder");
+            String task_random_id =  UUID.randomUUID().toString().replaceAll("-","");
+            String name_task_folder = "Task_" + task_random_id;
+
+            File dir = new File(Constants.TASKS_FOLDER_PATH + "/" + name_task_folder);
+            dir.mkdir();
+
+            HttpRequester.downloadFile("http://localhost:3000/file.zip", Constants.TASKS_FOLDER_PATH + "/" + name_task_folder + "/temp.zip");
+            //HttpRequester.downloadFile(temp_obj.get("url_api").toString()+"/file.zip", Constants.TASKS_FOLDER_PATH + "/temp.zip");
+            UnZip.unzip(Constants.TASKS_FOLDER_PATH + "/" + name_task_folder + "/" + "temp.zip", Constants.TASKS_FOLDER_PATH + "/" + name_task_folder);
+            new File(Constants.TASKS_FOLDER_PATH + "/" + name_task_folder + "/" + "temp.zip").delete();
+
+            String task_config = this.readFileAsString(Constants.TASKS_FOLDER_PATH + "/" + name_task_folder + "/" + "config.json");
+
+
+            JSONParser parser = new JSONParser();
+            Object task_config_obj = parser.parse(task_config);
+            JSONObject config_obj = (JSONObject) task_config_obj;
+
+            JSONObject result_info = new JSONObject();
+            result_info.put("task_id", task_random_id);
+            result_info.put("name_task_folder", name_task_folder);
+            result_info.put("name", temp_obj.get("name").toString());
+            result_info.put("url_site", temp_obj.get("url_site").toString());
+            result_info.put("url_api", temp_obj.get("url_api").toString());
+            result_info.put("description", temp_obj.get("description").toString());
+            result_info.put("config", task_config_obj);
+
+
+
+            task_manager.addTask(result_info);
+
+
+
+            System.out.println(result_info.toString());
 
         } catch (Exception e1) {
 
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setTitle("Warning");
-            alert.setHeaderText("This project can not be added");
-            alert.setContentText("Server not responding");
-            alert.showAndWait();
+            AlertMaker.showAlert(Alert.AlertType.WARNING, "Warning", "This project can not be added", "Server not responding", true);
+
+//            Alert alert = new Alert(Alert.AlertType.WARNING);
+//            alert.setTitle("Warning");
+//            alert.setHeaderText("This project can not be added");
+//            alert.setContentText("Server not responding");
+//            alert.showAndWait();
         }
 
     }
@@ -174,4 +205,19 @@ public class AddProjectController implements javafx.fxml.Initializable{
     public void initialize(URL location, ResourceBundle resources) {
         System.out.println("Add pr inithialize end.");
     }
+
+    public String readFileAsString(String filePath) throws IOException {
+        StringBuffer fileData = new StringBuffer();
+        BufferedReader reader = new BufferedReader(
+                new FileReader(filePath));
+        char[] buf = new char[1024];
+        int numRead=0;
+        while((numRead=reader.read(buf)) != -1){
+            String readData = String.valueOf(buf, 0, numRead);
+            fileData.append(readData);
+        }
+        reader.close();
+        return fileData.toString();
+    }
+
 }
