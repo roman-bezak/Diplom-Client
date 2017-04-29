@@ -1,11 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Font?>
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="640.0" prefWidth="911.0" style="-fx-background-color: #fff2fd;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.controller.MainController">
+
+<BorderPane maxHeight="688.0" maxWidth="624.0" minHeight="445.0" minWidth="624.0" prefHeight="445.0" prefWidth="624.0" style="-fx-background-color: #fff2fd;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.controller.MainController">
    <top>
       <VBox prefHeight="28.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <children>
@@ -30,11 +35,12 @@
             </MenuBar>
             <ToolBar>
               <items>
-                <Button mnemonicParsing="false" text="Button" />
-                  <Button layoutX="164.0" layoutY="10.0" mnemonicParsing="false" text="Button" />
-                  <Button layoutX="220.0" layoutY="10.0" mnemonicParsing="false" text="Button" />
-                  <Button layoutX="276.0" layoutY="10.0" mnemonicParsing="false" text="Button" />
-                  <ChoiceBox fx:id="choice_box" onDragEntered="#choice_box_selected" prefWidth="150.0" />
+                <Button fx:id="add_project_b" mnemonicParsing="false" onAction="#showAddProjectWindow" />
+                  <Button fx:id="run_task_b" layoutX="164.0" layoutY="10.0" mnemonicParsing="false" />
+                  <Button fx:id="stop_task_b" layoutX="220.0" layoutY="10.0" mnemonicParsing="false" />
+                  <Button fx:id="remove_task_b" layoutX="276.0" layoutY="10.0" mnemonicParsing="false" />
+                  <Button fx:id="info_task_b" mnemonicParsing="false" />
+                  <Button fx:id="task_folder_b" mnemonicParsing="false" />
               </items>
             </ToolBar>
          </children>
@@ -44,20 +50,9 @@
       <Cursor fx:constant="DEFAULT" />
    </cursor>
    <bottom>
-      <VBox prefHeight="253.0" prefWidth="703.0" BorderPane.alignment="CENTER">
+      <VBox prefHeight="5.0" prefWidth="624.0" BorderPane.alignment="CENTER">
          <children>
-            <TabPane prefHeight="245.0" prefWidth="821.0" tabClosingPolicy="UNAVAILABLE">
-              <tabs>
-                <Tab text="Files" />
-                <Tab text="Info" />
-                  <Tab text="Log">
-                     <content>
-                        <TextArea prefHeight="200.0" prefWidth="200.0" />
-                     </content>
-                  </Tab>
-              </tabs>
-            </TabPane>
-            <Label prefHeight="17.0" prefWidth="97.0" text="Connection">
+            <Label prefHeight="8.0" prefWidth="97.0" text="Connection">
                <VBox.margin>
                   <Insets left="5.0" />
                </VBox.margin>
@@ -69,13 +64,6 @@
       </VBox>
    </bottom>
    <center>
-      <TableView prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-        <columns>
-          <TableColumn prefWidth="75.0" text="C1" />
-          <TableColumn prefWidth="75.0" text="C2" />
-            <TableColumn prefWidth="75.0" text="C1" />
-            <TableColumn prefWidth="75.0" text="C2" />
-        </columns>
-      </TableView>
+      <TableView fx:id="table_view" prefHeight="369.0" prefWidth="646.0" BorderPane.alignment="CENTER" />
    </center>
 </BorderPane>
