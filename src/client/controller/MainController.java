@@ -1,15 +1,18 @@
 package client.controller;
 
+import client.platform.Constants;
 import client.platform.TaskManager;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TableView;
 
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -22,48 +25,30 @@ public class MainController implements javafx.fxml.Initializable{
     @FXML
     public TableView table_view;
     @FXML
-    public ChoiceBox choice_box;
+    public Button add_project_b;
+    @FXML
+    public Button run_task_b;
+    @FXML
+    public Button remove_task_b;
+    @FXML
+    public Button info_task_b;
+    @FXML
+    public Button task_folder_b;
+
+
 
     public TaskTableController task_table_controller;
     public SettingsController settingsController;
     public AddProjectController addProjectController;
     public TaskManager task_manager;
+    public TopBarController top_bar;
 
-    ObservableList<String> choice_box_options;
 
     public void initialize(URL url, ResourceBundle rb) {
 
-
-        task_manager = new TaskManager();
+        top_bar = new TopBarController(add_project_b,run_task_b,remove_task_b,info_task_b,task_folder_b);
+        task_manager = new TaskManager(top_bar);
         task_table_controller = new TaskTableController(table_view, task_manager);
-
-        choice_box_options = FXCollections.observableArrayList("valuename1", "valuename2");
-        choice_box.setItems(choice_box_options);
-        choice_box.setValue(choice_box_options.get(0));
-
-
-        choice_box.getSelectionModel().selectedIndexProperty().addListener((ov, value, new_value) -> {
-
-           task_manager.showTaskPool();
-//            Thread thread = new Thread(){
-//                public void run(){
-//                    System.out.println("Thread Running");
-//                    Runtime commandPrompt = Runtime.getRuntime();
-//                    try {
-//                        Process powershell = commandPrompt.exec("calc");
-//                        int q =  powershell.waitFor();
-//                        System.out.println(q);
-//                    } catch (IOException e) {
-//                        System.out.println(e.getMessage());
-//                    } catch (InterruptedException e) {
-//                        e.printStackTrace();
-//                    }
-//                }
-//            };
-//
-//            thread.start();
-
-        });
 
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/settings.fxml"));
@@ -88,19 +73,61 @@ public class MainController implements javafx.fxml.Initializable{
         addProjectController = (AddProjectController)loader2.getController();
         addProjectController.setUpAddProjectWindow(root2);
         addProjectController.getLinkOnTaskManager(task_manager);
+        addProjectController.getLinkOnTableTaskController(task_table_controller);
 
+       task_table_controller.tasks_list.get(0).start();
 
-
-        System.out.println("MC inithialize end.");
     }
 
     public void showSettingsWindow(){
         settingsController.showSettingsWindow();
     }
     public void showAddProjectWindow(){ addProjectController.showWindow(); }
+    public void removeButtonClick(){
 
-    public void choice_box_selected(){
-        System.out.println("MC inithialize end.");
+        int index = task_table_controller.table.getSelectionModel().getSelectedIndex();
+        String task_nname = task_manager.pool.tasks.get(index).get("name").toString();
+
+        task_manager.removeTask(task_nname);
+        task_table_controller.removeTaskFromTableView(task_nname);
+
+        if(task_manager.pool.tasks.size() == 0)top_bar.dizableAll();
+
     }
+
+    public void openTaskFolder(){
+
+        File file = new File(Constants.TASKS_FOLDER_PATH);
+        String absolutePath = file.getAbsolutePath();
+
+        Thread thread = new Thread(() -> {
+            Process p = null;
+            try {
+                p = Runtime.getRuntime().exec("explorer " + absolutePath + "\\" +
+                        task_table_controller.tasks_list.get(task_table_controller.table.getSelectionModel().getSelectedIndex()).folder_name);
+                p.waitFor();
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            System.out.println(task_table_controller.tasks_list.get(task_table_controller.table.getSelectionModel().getSelectedIndex()).getTaskName());
+
+
+        });
+
+
+        thread.start();
+    }
+
+
+    public void showAbout(){
+
+    }
+    public void showTaskInfo(){
+
+    }
+
+    public 
 
 }
