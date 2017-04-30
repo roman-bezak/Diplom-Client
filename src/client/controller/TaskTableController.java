@@ -4,6 +4,7 @@ import client.platform.TaskManager;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -17,13 +18,13 @@ public class TaskTableController {
 
 
 
-    private final ObservableList<TasksInfoModel> tasks_list = FXCollections.observableArrayList();
+    public final ObservableList<TasksInfoModel> tasks_list = FXCollections.observableArrayList();
 
     public TaskTableController(TableView table_link, TaskManager task_manager_link){
 
         table = table_link;
         task_manager = task_manager_link;
-
+        table.setPlaceholder(new Label(""));
 
         this.setUpTableView();
 
@@ -61,7 +62,10 @@ public class TaskTableController {
 
         table.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
             if (newSelection != null) {
-                System.out.println(table.getSelectionModel().getSelectedIndex());
+                System.out.println(tasks_list.get(table.getSelectionModel().getSelectedIndex()).task_desciption +
+                                   tasks_list.get(table.getSelectionModel().getSelectedIndex()).getTaskName().toString());
+                task_manager.top_bar_link.updateTopBar("run");
+
             }
         });
 
@@ -69,11 +73,40 @@ public class TaskTableController {
 
     public void setUpTableView(){
 
+        tasks_list.clear();
+
         for(int i = 0; i < task_manager.pool.tasks.size(); i++){
             tasks_list.add(new TasksInfoModel(String.valueOf(i + 1), task_manager.pool.tasks.get(i).get("name").toString(),
-                                              task_manager.pool.tasks.get(i).get("url_site").toString(), "Stopped"));
+                                              task_manager.pool.tasks.get(i).get("url_site").toString(), "Stopped",
+                                              task_manager.pool.tasks.get(i).get("task_id").toString(),
+                                              task_manager.pool.tasks.get(i).get("name_task_folder").toString(),
+                                              task_manager.pool.tasks.get(i).get("description").toString()));
         }
 
+    }
+
+
+    public void addNewTaskToView(String _new_task_name){
+        for(int i = 0; i < task_manager.pool.tasks.size(); i++){
+            if(task_manager.pool.tasks.get(i).get("name").toString().equals(_new_task_name) == true){
+                tasks_list.add(new TasksInfoModel(String.valueOf(i + 1), task_manager.pool.tasks.get(i).get("name").toString(),
+                        task_manager.pool.tasks.get(i).get("url_site").toString(), "Stopped",
+                        task_manager.pool.tasks.get(i).get("task_id").toString(),
+                        task_manager.pool.tasks.get(i).get("name_task_folder").toString(),
+                        task_manager.pool.tasks.get(i).get("description").toString()));
+
+                return;
+            }
+        }
+    }
+
+    public void removeTaskFromTableView(String _name){
+        for(int i = 0; i < tasks_list.size(); i++){
+            if(tasks_list.get(i).getTaskName().equals(_name) == true){
+                tasks_list.remove(i);
+                return;
+            }
+        }
     }
 
     public static class TasksInfoModel {
@@ -83,12 +116,21 @@ public class TaskTableController {
         private final SimpleStringProperty urlSite;
         private final SimpleStringProperty status;
 
-        private TasksInfoModel(String _id, String _taskName, String _urlSite, String _status) {
+        public String task_id;
+        public String folder_name;
+        public String task_desciption;
+
+
+        private TasksInfoModel(String _id, String _taskName, String _urlSite, String _status,String _task_id, String _folderName, String _t_d) {
 
             this.id = new SimpleStringProperty(_id);
             this.taskName = new SimpleStringProperty(_taskName);
             this.urlSite = new SimpleStringProperty(_urlSite);
             this.status = new SimpleStringProperty(_status);
+
+            task_id = new String(_task_id);
+            folder_name = new String(_folderName);
+            task_desciption = new String(_t_d);
 
         }
 
