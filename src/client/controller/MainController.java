@@ -140,6 +140,7 @@ public class MainController implements javafx.fxml.Initializable{
         if(task_table_controller.tasks_list.get(index).getStatus().equals("stop") == true){
             task_table_controller.tasks_list.get(index).start();
         }else{
+
             top_bar.updateTopBar("stop");
         }
     }
