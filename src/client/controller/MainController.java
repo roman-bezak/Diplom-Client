@@ -1,5 +1,6 @@
 package client.controller;
 
+import client.platform.AlertMaker;
 import client.platform.Constants;
 import client.platform.TaskManager;
 import javafx.collections.FXCollections;
@@ -7,6 +8,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TableView;
@@ -75,7 +77,7 @@ public class MainController implements javafx.fxml.Initializable{
         addProjectController.getLinkOnTaskManager(task_manager);
         addProjectController.getLinkOnTableTaskController(task_table_controller);
 
-       task_table_controller.tasks_list.get(0).start();
+       //task_table_controller.tasks_list.get(0).start();
 
     }
 
@@ -116,18 +118,30 @@ public class MainController implements javafx.fxml.Initializable{
 
         });
 
-
         thread.start();
     }
 
 
     public void showAbout(){
-
+        AlertMaker.showAlert(Alert.AlertType.CONFIRMATION, "About", "Client v.1.0", "Roman Bezak \n@Minsk, 2017", true);
     }
+
     public void showTaskInfo(){
-
+        int index = task_table_controller.table.getSelectionModel().getSelectedIndex();
+        AlertMaker.showAlert(Alert.AlertType.CONFIRMATION, "Information", "Task name: " +
+                            task_table_controller.tasks_list.get(index).getTaskName().toString() + "\nURL: " +
+                            task_table_controller.tasks_list.get(index).getUrlSite(),
+                            task_table_controller.tasks_list.get(index).task_desciption, true);
     }
 
-    public 
+    public void run_and_stop_click(){
+        int index = task_table_controller.table.getSelectionModel().getSelectedIndex();
+
+        if(task_table_controller.tasks_list.get(index).getStatus().equals("stop") == true){
+            task_table_controller.tasks_list.get(index).start();
+        }else{
+            top_bar.updateTopBar("stop");
+        }
+    }
 
 }
